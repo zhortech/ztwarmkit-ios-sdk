@@ -1,0 +1,92 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ZTWarmKit
+import CoreBluetooth
+import Foundation
+import Swift
+import ZTCoreKit
+public struct ZTWarmDebugMessage {
+  public var rawData: Foundation.Data?
+  public var side: ZTCoreKit.ZTModuleSide?
+  public var resistance: Swift.UInt16?
+  public var pwm: Swift.UInt16?
+  public init()
+  public init(data: Foundation.Data)
+  public init(data: Foundation.Data, side: ZTCoreKit.ZTModuleSide)
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension ZTWarmDebugMessage {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct ZTWarmTimerMessage : ZTWarmKit.ZTNotifyDataWarmMessage {
+  public var rawData: Foundation.Data?
+  public var time: Swift.Int?
+  public init()
+  public init(data: Foundation.Data)
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension ZTWarmTimerMessage {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct ZTWarmTemperatureMessage {
+  public var rawData: Foundation.Data?
+  public var side: ZTCoreKit.ZTModuleSide?
+  public var temperature: Swift.Int
+  public init()
+  public init(data: Foundation.Data)
+  public init(data: Foundation.Data, side: ZTCoreKit.ZTModuleSide)
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension ZTWarmTemperatureMessage {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct ZTWarmTemperatureInformationMessage {
+  public var rawData: Foundation.Data?
+  public var side: ZTCoreKit.ZTModuleSide?
+  public var temperature: Swift.Double?
+  public init()
+  public init(data: Foundation.Data)
+  public init(data: Foundation.Data, side: ZTCoreKit.ZTModuleSide)
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension ZTWarmTemperatureInformationMessage {
+  public var description: Swift.String {
+    get
+  }
+}
+public protocol ZTNotifyDataWarmMessage : Swift.CustomStringConvertible, ZTCoreKit.ZTNotifyDataMessage {
+  var rawData: Foundation.Data? { get set }
+  init()
+  init(data: Foundation.Data)
+}
+@_hasMissingDesignatedInitializers public class ZTWarm {
+  public static let sdkVersion: Swift.String
+  public static let shared: ZTWarmKit.ZTWarm
+  public var connectedDevice: ZTCoreKit.ZTDevice? {
+    get
+  }
+  public var lastSerialNumber: Swift.String? {
+    get
+  }
+  public func readGeneralState()
+  public func isHeating(completion: @escaping ((Swift.Bool) -> Swift.Void))
+  public func startHeat(temperature: Swift.Int, completion: @escaping ZTCoreKit.ZTBaseResult)
+  public func stopHeat(completion: @escaping ZTCoreKit.ZTBaseResult)
+  public func startHeatTimer(seconds: Foundation.TimeInterval, enable: Swift.Bool, completion: @escaping ZTCoreKit.ZTBaseResult)
+  public func getTemperature(completion: @escaping ((Swift.Int?, ZTCoreKit.ZTError?) -> Swift.Void))
+  public func getTimer(completion: @escaping ((Foundation.TimeInterval?, ZTCoreKit.ZTError?) -> Swift.Void))
+  @objc deinit
+}
+extension ZTWarmKit.ZTWarmDebugMessage : ZTWarmKit.ZTNotifyDataWarmMessage {}
+extension ZTWarmKit.ZTWarmTemperatureMessage : ZTWarmKit.ZTNotifyDataWarmMessage {}
+extension ZTWarmKit.ZTWarmTemperatureInformationMessage : ZTWarmKit.ZTNotifyDataWarmMessage {}

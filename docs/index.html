@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ZTWarmKit  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a title="ZTWarmKit  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">ZTWarmKit 1.0.0 Docs</a></p>
+        <p class="header-right"><a href="https://github.com/zhortech/ztwarmkit-ios-sdk"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">ZTWarmKit Reference</a>
+        <img id="carat" src="img/carat.png" />
+        ZTWarmKit  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Notify%20messages.html">Notify messages</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/ZTWarmTemperatureMessage.html">ZTWarmTemperatureMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ZTWarmTimerMessage.html">ZTWarmTimerMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ZTWarmTemperatureInformationMessage.html">ZTWarmTemperatureInformationMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ZTWarmDebugMessage.html">ZTWarmDebugMessage</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='ztwarmkit' class='heading'>ZTWarmKit</h1>
+
+<p><a href="https://cocoapods.org/pods/ZTWarmKit"><img src="https://img.shields.io/cocoapods/p/ZTWarmKit.svg" alt="Platforms"></a>
+<a href="https://raw.githubusercontent.com/zhortech/ztwarmkit-ios-sdk/main/LICENSE"><img src="https://img.shields.io/cocoapods/l/ZTWarmKit" alt="License"></a>
+<a href="https://cocoapods.org/pods/ZTWarmKit"><img src="https://img.shields.io/cocoapods/v/ZTWarmKit.svg" alt="CocoaPods compatible"></a></p>
+
+<ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2 id='requirements' class='heading'>Requirements</h2>
+
+<ul>
+<li>iOS 13.0+</li>
+<li>Xcode 11.0+</li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='dependency-managers' class='heading'>Dependency Managers</h3>
+
+<details>
+  <summary><strong>CocoaPods</strong></summary>
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+&ldquo;`bash
+$ gem install cocoapods
+&rdquo;`
+
+To integrate ZTWarmKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+&ldquo;`ruby
+source &lsquo;https://github.com/CocoaPods/Specs.git&rsquo;
+platform :ios, &lsquo;13.0&rsquo;
+use_frameworks!
+
+pod &lsquo;ZTWarmKit&rsquo;, :git => &quot;https://github.com/zhortech/ztwarmkit-ios-sdk.git&rdquo;
+&ldquo;`
+Please add post install script at the end of `Podfile` if there is problem to use  library:
+
+&rdquo;`ruby
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings[&lsquo;BUILD_LIBRARY_FOR_DISTRIBUTION&rsquo;] = &lsquo;YES&rsquo;
+      end
+    end
+  end
+&ldquo;`
+
+Then, run the following command:
+
+&rdquo;`bash
+$ pod install
+&ldquo;`
+
+</details>
+
+<details>
+  <summary><strong>Swift Package Manager</strong></summary>
+
+To use ZTWarmKit as a [Swift Package Manager](https://swift.org/package-manager/) package just add the following in your Package.swift file.
+
+&rdquo;` swift
+// swift-tools-version:5.3
+
+import PackageDescription
+
+let package = Package(
+    name: &ldquo;ZTWarmKit&rdquo;,
+    dependencies: [
+        .package(url: &ldquo;https://github.com/zhortech/ztwarmkit-ios-sdk.git&rdquo;, .upToNextMajor(from: &ldquo;1.0.0&rdquo;))
+    ],
+    targets: [
+        .target(name: &ldquo;ZTWarmKit&rdquo;, dependencies: [&ldquo;ZTCoreKit&rdquo;])
+    ]
+)
+&ldquo;`
+</details>
+<h3 id='manually' class='heading'>Manually</h3>
+
+<p>If you prefer not to use either of the aforementioned dependency managers, you can integrate ZTWarmKit into your project manually.</p>
+
+<details>
+  <summary><strong>Git Submodules</strong></summary><p>
+
+- Open up Terminal, `cd` into your top-level project directory, and run the following command &quot;if&rdquo; your project is not initialized as a git repository:
+
+&ldquo;`bash
+$ git init
+&rdquo;`
+
+- Add ZTWarmKit as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
+
+&ldquo;`bash
+$ git submodule add https://github.com/zhortech/ztwarmkit-ios-sdk.git
+$ git submodule update &ndash;init &ndash;recursive
+&rdquo;`
+
+- Open the new `ZTWarmKit` folder, and drag the `ZTWarmKit.xcodeproj` into the Project Navigator of your application&rsquo;s Xcode project.
+
+    > It should appear nested underneath your application&rsquo;s blue project icon. Whether it is above or below all the other Xcode groups does not matter.
+
+- Select the `ZTWarmKit.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
+- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the &ldquo;Targets&rdquo; heading in the sidebar.
+- In the tab bar at the top of that window, open the &ldquo;General&rdquo; panel.
+- Click on the `+` button under the &ldquo;Embedded Binaries&rdquo; section.
+- You will see two different `ZTWarmKit.xcodeproj` folders each with two different versions of the `ZTWarmKit.framework` nested inside a `Products` folder.
+
+    > It does not matter which `Products` folder you choose from.
+
+- Select the `ZTWarmKit.framework`.
+
+- And that&rsquo;s it!
+
+> The `ZTWarmKit.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
+
+</p></details>
+
+<details>
+  <summary><strong>Embedded Binaries</strong></summary><p>
+
+- Download the latest release from https://github.com/zhortech/ztwarmkit-ios-sdk/releases
+- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the &ldquo;Targets&rdquo; heading in the sidebar.
+- In the tab bar at the top of that window, open the &ldquo;General&rdquo; panel.
+- Click on the `+` button under the &ldquo;Embedded Binaries&rdquo; section.
+- Add the downloaded `ZTWarmKit.framework`.
+- And that&rsquo;s it!
+
+</p></details>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='setting-required-temperature-on-insoles' class='heading'>Setting required temperature on insoles</h3>
+
+<p>Call <code>startHeat(temperature:completion:)</code> to set temperature (in celcius) and start heating:</p>
+<pre class="highlight swift"><code>
+<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">startHeat</span><span class="p">(</span><span class="nv">temperature</span><span class="p">:</span> <span class="mi">30</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="nf">debugPrint</span><span class="p">(</span><span class="s">"Heating started, error: </span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+
+</code></pre>
+
+<p>There is a way to set heating timer on insoles by calling <code>startHeatTimer(seconds:enable:)</code> and start or stop heating: </p>
+<pre class="highlight swift"><code>
+<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">startHeatTimer</span><span class="p">(</span><span class="nv">seconds</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="nv">enable</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="nf">debugPrint</span><span class="p">(</span><span class="s">"Heating </span><span class="se">\(</span><span class="n">enable</span> <span class="p">?</span> <span class="s">"started"</span> <span class="p">:</span> <span class="s">"stopped"</span><span class="se">)</span><span class="s">, error: </span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>If you need to check temperature set use <code>ZTWarm.shared.getTemperature</code>:</p>
+<pre class="highlight swift"><code>
+<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">getTemperature</span> <span class="p">{</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="nf">debugPrint</span><span class="p">(</span><span class="s">"Temperature set = </span><span class="se">\(</span><span class="n">temperature</span> <span class="p">??</span> <span class="mi">0</span><span class="se">)</span><span class="s">, error: </span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>If you need to check remaining timer value ( in seconds) use <code>ZTWarm.shared.getTimer</code>.</p>
+<pre class="highlight swift"><code>
+<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">getTimer</span> <span class="p">{</span> <span class="n">seconds</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="nf">debugPrint</span><span class="p">(</span><span class="s">"Timer is set to </span><span class="se">\(</span><span class="n">seconds</span> <span class="p">??</span> <span class="mi">0</span><span class="se">)</span><span class="s">, error: </span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>ZhorTech <a href="https://twitter.com/zhortech">@zhortech</a></p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>ZTWarmKit is released under the MIT license. See <a href="https://github.com/zhortech/ztwarmkit-ios-sdk.git/blob/master/LICENSE">LICENSE</a> for details.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://zhortech.com" target="_blank" rel="external">Zhortech</a>. All rights reserved. (Last updated: 2021-07-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
