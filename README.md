@@ -131,7 +131,7 @@ $ git submodule update --init --recursive
 
 ## Usage
 
-### Setting required temperature on insoles
+### Start/Stop heating
 
  Call `startHeat(temperature:completion:)` to set temperature (in celcius) and start heating:
 ```swift
@@ -141,27 +141,28 @@ ZTWarm.shared.startHeat(temperature: 30) { error in
 }
 
 ```
-There is a way to set heating timer on insoles by calling `startHeatTimer(seconds:enable:)` and start or stop heating: 
+There is a way to set timer on insoles by calling `setTimer(seconds:enable:)`. Temperature should be set before calling this method.
+When timer ends - heating will be stopped. If timer value `enable` is false - timer won't work.
 ```swift
 
-ZTWarm.shared.startHeatTimer(seconds: 60, enable: true) { error in
+ZTWarm.shared.setTimer(seconds: 60, enable: true) { error in
     debugPrint("Heating \(enable ? "started" : "stopped"), error: \(error?.localizedDescription ?? "")")
 }
 ```
 
-If you need to check temperature set use `ZTWarm.shared.getTemperature`:
+If you need to check temperature which was set use `ZTWarm.shared.getTargetTemperature`:
 ```swift
 
-ZTWarm.shared.getTemperature { temperature, error in
-    debugPrint("Temperature set = \(temperature ?? 0), error: \(error?.localizedDescription ?? "")")
+ZTWarm.shared.getTargetTemperature { temperature, error in
+    debugPrint("Temperature set value = \(temperature ?? 0), error: \(error?.localizedDescription ?? "")")
 }
 ```
 
 If you need to check remaining timer value ( in seconds) use `ZTWarm.shared.getTimer`.
 ```swift
 
-ZTWarm.shared.getTimer { seconds, error in
-    debugPrint("Timer is set to \(seconds ?? 0), error: \(error?.localizedDescription ?? "")")
+ZTWarm.shared.getRemainingTimer { seconds, error in
+    debugPrint("Timer will stop in \(seconds ?? 0), error: \(error?.localizedDescription ?? "")")
 }
 ```
 

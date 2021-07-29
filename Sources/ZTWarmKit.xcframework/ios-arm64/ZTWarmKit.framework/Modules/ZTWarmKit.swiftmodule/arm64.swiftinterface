@@ -82,9 +82,9 @@ public protocol ZTNotifyDataWarmMessage : Swift.CustomStringConvertible, ZTCoreK
   public func isHeating(completion: @escaping ((Swift.Bool) -> Swift.Void))
   public func startHeat(temperature: Swift.Int, completion: @escaping ZTCoreKit.ZTBaseResult)
   public func stopHeat(completion: @escaping ZTCoreKit.ZTBaseResult)
-  public func startHeatTimer(seconds: Foundation.TimeInterval, enable: Swift.Bool, completion: @escaping ZTCoreKit.ZTBaseResult)
-  public func getTemperature(completion: @escaping ((Swift.Int?, ZTCoreKit.ZTError?) -> Swift.Void))
-  public func getTimer(completion: @escaping ((Foundation.TimeInterval?, ZTCoreKit.ZTError?) -> Swift.Void))
+  public func setTimer(seconds: Foundation.TimeInterval, enable: Swift.Bool, completion: @escaping ZTCoreKit.ZTBaseResult)
+  public func getTargetTemperature(completion: @escaping ((Swift.Int?, ZTCoreKit.ZTError?) -> Swift.Void))
+  public func getRemainingTimer(completion: @escaping ((Foundation.TimeInterval?, ZTCoreKit.ZTError?) -> Swift.Void))
   @objc deinit
 }
 extension ZTWarmKit.ZTWarmDebugMessage : ZTWarmKit.ZTNotifyDataWarmMessage {}
