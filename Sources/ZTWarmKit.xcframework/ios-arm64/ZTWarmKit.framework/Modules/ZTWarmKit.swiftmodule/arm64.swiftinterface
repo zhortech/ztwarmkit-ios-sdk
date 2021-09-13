@@ -49,6 +49,10 @@ extension ZTWarmTemperatureMessage {
     get
   }
 }
+extension ZTWarm {
+  @available(*, deprecated, renamed: "readGeneralState", message: "This method is deprecated, use method with same name and completion handler")
+  public func readGeneralState()
+}
 public struct ZTWarmTemperatureInformationMessage {
   public var rawData: Foundation.Data?
   public var side: ZTCoreKit.ZTModuleSide?
@@ -78,7 +82,7 @@ public protocol ZTNotifyDataWarmMessage : Swift.CustomStringConvertible, ZTCoreK
   public var lastSerialNumber: Swift.String? {
     get
   }
-  public func readGeneralState()
+  public func readGeneralState(completion: @escaping ((ZTCoreKit.ZTDeviceActualState?) -> Swift.Void))
   public func isHeating(completion: @escaping ((Swift.Bool) -> Swift.Void))
   public func startHeat(temperature: Swift.Int, completion: @escaping ZTCoreKit.ZTBaseResult)
   public func stopHeat(completion: @escaping ZTCoreKit.ZTBaseResult)

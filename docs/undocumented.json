@@ -9,6 +9,13 @@
     },
     {
       "file": "/Users/pavel/Documents/Work/Zhortech/Framework/iOS/ztwarmkit/Sources/ZTWarmKit/ZTWarm.swift",
+      "line": 10,
+      "symbol": "ZTWarm",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/pavel/Documents/Work/Zhortech/Framework/iOS/ztwarmkit/Sources/ZTWarmKit/ZTWarm.swift",
       "line": 13,
       "symbol": "ZTWarm",
       "symbol_kind": "source.lang.swift.decl.class",

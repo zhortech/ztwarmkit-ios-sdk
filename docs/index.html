@@ -16,7 +16,7 @@
     <a title="ZTWarmKit  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">ZTWarmKit 1.0.0 Docs</a></p>
+        <p><a href="index.html">ZTWarmKit 1.0.1 Docs</a></p>
         <p class="header-right"><a href="https://github.com/zhortech/ztwarmkit-ios-sdk"><img src="img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="search.json">
@@ -190,7 +190,7 @@ $ git submodule update &ndash;init &ndash;recursive
 
 </p></details>
 <h2 id='usage' class='heading'>Usage</h2>
-<h3 id='setting-required-temperature-on-insoles' class='heading'>Setting required temperature on insoles</h3>
+<h3 id='start-stop-heating' class='heading'>Start/Stop heating</h3>
 
 <p>Call <code>startHeat(temperature:completion:)</code> to set temperature (in celcius) and start heating:</p>
 <pre class="highlight swift"><code>
@@ -200,24 +200,25 @@ $ git submodule update &ndash;init &ndash;recursive
 
 </code></pre>
 
-<p>There is a way to set heating timer on insoles by calling <code>startHeatTimer(seconds:enable:)</code> and start or stop heating: </p>
+<p>There is a way to set timer on insoles by calling <code>setTimer(seconds:enable:)</code>. Temperature should be set before calling this method.
+When timer ends - heating will be stopped. If timer value <code>enable</code> is false - timer won&rsquo;t work.</p>
 <pre class="highlight swift"><code>
-<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">startHeatTimer</span><span class="p">(</span><span class="nv">seconds</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="nv">enable</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">setTimer</span><span class="p">(</span><span class="nv">seconds</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="nv">enable</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
     <span class="nf">debugPrint</span><span class="p">(</span><span class="s">"Heating </span><span class="se">\(</span><span class="n">enable</span> <span class="p">?</span> <span class="s">"started"</span> <span class="p">:</span> <span class="s">"stopped"</span><span class="se">)</span><span class="s">, error: </span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
 
-<p>If you need to check temperature set use <code>ZTWarm.shared.getTemperature</code>:</p>
+<p>If you need to check temperature which was set use <code>ZTWarm.shared.getTargetTemperature</code>:</p>
 <pre class="highlight swift"><code>
-<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">getTemperature</span> <span class="p">{</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
-    <span class="nf">debugPrint</span><span class="p">(</span><span class="s">"Temperature set = </span><span class="se">\(</span><span class="n">temperature</span> <span class="p">??</span> <span class="mi">0</span><span class="se">)</span><span class="s">, error: </span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">getTargetTemperature</span> <span class="p">{</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="nf">debugPrint</span><span class="p">(</span><span class="s">"Temperature set value = </span><span class="se">\(</span><span class="n">temperature</span> <span class="p">??</span> <span class="mi">0</span><span class="se">)</span><span class="s">, error: </span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
 
 <p>If you need to check remaining timer value ( in seconds) use <code>ZTWarm.shared.getTimer</code>.</p>
 <pre class="highlight swift"><code>
-<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">getTimer</span> <span class="p">{</span> <span class="n">seconds</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
-    <span class="nf">debugPrint</span><span class="p">(</span><span class="s">"Timer is set to </span><span class="se">\(</span><span class="n">seconds</span> <span class="p">??</span> <span class="mi">0</span><span class="se">)</span><span class="s">, error: </span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="kt">ZTWarm</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">getRemainingTimer</span> <span class="p">{</span> <span class="n">seconds</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="nf">debugPrint</span><span class="p">(</span><span class="s">"Timer will stop in </span><span class="se">\(</span><span class="n">seconds</span> <span class="p">??</span> <span class="mi">0</span><span class="se">)</span><span class="s">, error: </span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
 <h2 id='author' class='heading'>Author</h2>
@@ -230,7 +231,7 @@ $ git submodule update &ndash;init &ndash;recursive
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://zhortech.com" target="_blank" rel="external">Zhortech</a>. All rights reserved. (Last updated: 2021-07-29)</p>
+          <p>&copy; 2021 <a class="link" href="https://zhortech.com" target="_blank" rel="external">Zhortech</a>. All rights reserved. (Last updated: 2021-09-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

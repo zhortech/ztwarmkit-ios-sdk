@@ -1,6 +1,10 @@
 # Changelog
 
-## [v1.0.0](https://gitlab.com/zhor-tech/sdk/ios/ztwarmkit/-/tags/v.1.0.0) (2021-07-28)
+## [v1.0.1](https://github.com/zhortech/ztwarmkit-ios-sdk/-/tags/1.0.1) (2021-09-13)
+
+- `readGeneralState()` was changed to `readGeneralState(completion:)` with completion handler
+
+## [v1.0.0](https://github.com/zhortech/ztwarmkit-ios-sdk/-/tags/1.0.0) (2021-07-28)
 
 ***New methods added:***
 - `startHeat(temperature:completion:)` - send heating target temperature and enable heating
