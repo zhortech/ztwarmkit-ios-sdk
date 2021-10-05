@@ -1,10 +1,11 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
 // swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ZTWarmKit
 import CoreBluetooth
 import Foundation
 import Swift
 import ZTCoreKit
+import _Concurrency
 public struct ZTWarmDebugMessage {
   public var rawData: Foundation.Data?
   public var side: ZTCoreKit.ZTModuleSide?
@@ -16,7 +17,7 @@ public struct ZTWarmDebugMessage {
   public func encode(to encoder: Swift.Encoder) throws
   public init(from decoder: Swift.Decoder) throws
 }
-extension ZTWarmDebugMessage {
+extension ZTWarmKit.ZTWarmDebugMessage {
   public var description: Swift.String {
     get
   }
@@ -29,7 +30,7 @@ public struct ZTWarmTimerMessage : ZTWarmKit.ZTNotifyDataWarmMessage {
   public func encode(to encoder: Swift.Encoder) throws
   public init(from decoder: Swift.Decoder) throws
 }
-extension ZTWarmTimerMessage {
+extension ZTWarmKit.ZTWarmTimerMessage {
   public var description: Swift.String {
     get
   }
@@ -44,12 +45,12 @@ public struct ZTWarmTemperatureMessage {
   public func encode(to encoder: Swift.Encoder) throws
   public init(from decoder: Swift.Decoder) throws
 }
-extension ZTWarmTemperatureMessage {
+extension ZTWarmKit.ZTWarmTemperatureMessage {
   public var description: Swift.String {
     get
   }
 }
-extension ZTWarm {
+extension ZTWarmKit.ZTWarm {
   @available(*, deprecated, renamed: "readGeneralState", message: "This method is deprecated, use method with same name and completion handler")
   public func readGeneralState()
 }
@@ -63,7 +64,7 @@ public struct ZTWarmTemperatureInformationMessage {
   public func encode(to encoder: Swift.Encoder) throws
   public init(from decoder: Swift.Decoder) throws
 }
-extension ZTWarmTemperatureInformationMessage {
+extension ZTWarmKit.ZTWarmTemperatureInformationMessage {
   public var description: Swift.String {
     get
   }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'ZTWarmKit'
-  s.version = '1.0.1'
+  s.version = '1.0.2'
   s.license = { :type => "MIT", :file => "LICENSE" }
   s.summary = 'Official Zhortech ZTWarmKit SDK for iOS to work with Warm products.'
   s.homepage = 'https://zhortech.com/'

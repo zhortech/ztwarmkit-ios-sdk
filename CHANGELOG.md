@@ -1,10 +1,14 @@
 # Changelog
 
-## [v1.0.1](https://github.com/zhortech/ztwarmkit-ios-sdk/-/tags/1.0.1) (2021-09-13)
+## [1.0.2](https://github.com/zhortech/ztwarmkit-ios-sdk/-/tags/1.0.2) (2021-10-05)
+
+- added events to track and analyze insoles behavior
+
+## [1.0.1](https://github.com/zhortech/ztwarmkit-ios-sdk/-/tags/1.0.1) (2021-09-13)
 
 - `readGeneralState()` was changed to `readGeneralState(completion:)` with completion handler
 
-## [v1.0.0](https://github.com/zhortech/ztwarmkit-ios-sdk/-/tags/1.0.0) (2021-07-28)
+## [1.0.0](https://github.com/zhortech/ztwarmkit-ios-sdk/-/tags/1.0.0) (2021-07-28)
 
 ***New methods added:***
 - `startHeat(temperature:completion:)` - send heating target temperature and enable heating
